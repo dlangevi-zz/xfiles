@@ -1,0 +1,16 @@
+clear control
+clear mod4
+keycode 133 = Super_L
+add control  = Control_L Control_R Super_L
+add mod4 = Hyper_L Super_R
+
+
+! Swap Caps_Lock and Control_L
+!
+remove Lock = Caps_Lock
+!remove Control = Control_L
+!keysym Control_L = Control L 
+keysym Caps_Lock = Control_L
+!add Lock = Caps_Lock
+add Control = Control_L
+

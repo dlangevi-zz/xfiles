@@ -1,0 +1,44 @@
+import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.NoBorders
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeysP)
+import System.IO
+
+import qualified XMonad.StackSet as W
+
+myWorkspaces = ["1:web", "2:chat", "3:work", "4:dev", "5:dev", "6:tmp", "7", "8", "9:banished", "0", "-", "="]
+myManageHook = composeAll [
+                className =? "Gimp"      --> doFloat,
+                className =? "Vncviewer" --> doFloat,
+                isFullscreen             --> doFullFloat
+               ]
+myKeys = 
+        [ ("M-" ++ ws, windows $ W.greedyView ws) | ws <- myWorkspaces ]
+        ++
+        [ ("M-S-" ++ ws, windows $ W.shift ws) | ws <- myWorkspaces ]
+        ++
+        [ ("M-f", spawn "firefox") ]
+        ++
+        [ ("M-S-l", spawn "gnome-screensaver-command -l") ]
+
+myStartupHook :: X ()
+myStartupHook = do spawn "gnome-settings-daemon"
+                   spawn "gnome-power-manager"
+                   spawn "setxkbmap -option \"ctrl:nocaps\""
+                   spawn "setxkbmap -option \"compose:ralt\""
+
+main = do xmproc <- spawnPipe "xmobar"
+          xmonad $ defaultConfig {
+                    terminal  = "urxvt",
+                    workspaces  = myWorkspaces,
+                    startupHook = myStartupHook,
+                    manageHook  = manageDocks <+> myManageHook <+> manageHook defaultConfig,
+                    layoutHook  = smartBorders $ avoidStruts $ layoutHook defaultConfig,
+                    logHook     = dynamicLogWithPP $ xmobarPP {
+                                                      ppOutput = hPutStrLn xmproc,
+                                                      ppTitle = xmobarColor "green" "" . shorten 100
+                   }
+          } `additionalKeysP` myKeys

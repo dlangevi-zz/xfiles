@@ -1,0 +1,24 @@
+#/bin/bash
+
+var=`head -n 1 ~/.XrandomColor`
+var2=`head -n 2 ~/.XrandomColor | tail -n 1`
+[ $var == $var2 ]
+echo $?
+
+if [ $var == $var2 ]
+   then
+      cat > .XrandomColor < .XrandomColorBackup
+fi
+
+var=`head -n 1 ~/.XrandomColor`
+
+tail -n 6 ~/.XrandomColor > temp2
+
+echo $var > temp
+
+cat temp2 temp > ~/.XrandomColor
+rm temp temp2
+
+sed "s/randomColor/`echo $var`/g" ~/.Xresources | xrdb
+urxvt
+
