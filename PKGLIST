@@ -1,0 +1,23 @@
+# Packages should install
+
+# term
+vim
+tmux
+zsh
+git
+mosh
+hg
+irssi
+
+# x related
+xbacklight
+xmodmap
+xautolock
+
+# graphical
+rxvt-unicode
+chromium-browser
+dmenu
+xmonad
+xmobar
+
