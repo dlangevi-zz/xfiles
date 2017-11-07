@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+if [ "$1" == "light" ]; then
+   var="$HOME/.light"
+elif [ "$1" == "dark" ]; then
+   var="$HOME/.dark"
+elif [ "$1" == "grey" ]; then
+   var="$HOME/.grey"
+else
+   var="$HOME/.dark"
+fi 
+
+sed "s#URXVTPROFILE#`echo $var`#g" ~/.Xresources | xrdb
+urxvt
+

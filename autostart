@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#if [ -x /usr/bin/stalonetray ] ; then
+#	stalonetray &
+#fi
+#if [ -x /usr/bin/nm-applet ] ; then
+#	nm-applet --sm-disable &
+#fi
+
+xrdb merge ~/.Xresources
+xmodmap ~/.xmodmap
+feh --bg-scale ~/downloads/sunset.jpeg &
