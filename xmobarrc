@@ -4,14 +4,14 @@ Config {
      font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
    , bgColor =      "black"
    , fgColor =      "#646464"
-   , position =     Top
+   , position =     TopW L 98
    , border =       BottomB
    , borderColor =  "#646464"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader%  }{ %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date% "
+   , template = "%StdinReader%  }{ %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start

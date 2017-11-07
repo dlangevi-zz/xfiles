@@ -1,5 +1,10 @@
 # Packages should install
 
+# system 
+acpi
+alsa-*
+pacaur
+
 # term
 vim
 tmux
@@ -7,17 +12,16 @@ zsh
 git
 mosh
 hg
-irssi
-
-# x related
-xbacklight
-xmodmap
-xautolock
+weechat (use textbased mode)
 
 # graphical
+gdm
+keepass
 rxvt-unicode
 chromium-browser
 dmenu
 xmonad
 xmobar
+xmobar-contrib
+xlock
 
